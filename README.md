@@ -1,2 +1,2 @@
 # XYZ-Reader
-Project 5
+Project 5 of nanodegree
