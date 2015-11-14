@@ -7,6 +7,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.ActionBar;
@@ -15,10 +16,13 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -67,7 +71,13 @@ public class ArticleDetailFragment extends Fragment implements
         }
         setHasOptionsMenu(true);
 
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Slide slide = new Slide(Gravity.BOTTOM);
+            slide.addTarget(R.id.container_bottom);
+            slide.setInterpolator(AnimationUtils.loadInterpolator(getActivity(), android.R.interpolator.linear_out_slow_in));
+            slide.setDuration(R.integer.slide_duration);
+            getActivity().getWindow().setEnterTransition(slide);
+        }
     }
 
     public ArticleDetailActivity getActivityCast() {
@@ -153,6 +163,7 @@ public class ArticleDetailFragment extends Fragment implements
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setDisplayShowTitleEnabled(false);
             }
+
         } else {
             mRootView.setVisibility(View.GONE);
             titleView.setText("N/A");
