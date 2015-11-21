@@ -129,12 +129,7 @@ public class ArticleListActivity extends AppCompatActivity implements
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())));
-                    //intent.setAction(Intent.ACTION_VIEW);
-                    //intent.setData(Uri.parse(photoUrlBase + photo.id));
-                    //intent.putExtra(DetailActivity.EXTRA_AUTHOR, photo.author);
-                    //, view, view.getTransitionName()
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ArticleListActivity.this).toBundle());
-                    //startActivity(intent);
                 }
             });
             return vh;
@@ -156,7 +151,6 @@ public class ArticleListActivity extends AppCompatActivity implements
             holder.thumbnailView.setImageUrl(
                     mCursor.getString(ArticleLoader.Query.THUMB_URL),
                     ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
-
         }
 
         @Override
