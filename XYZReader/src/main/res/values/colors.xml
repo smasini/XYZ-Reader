@@ -28,5 +28,6 @@
     <color name="indigo_200">#9FA8DA</color>
     <color name="deep_orange_a200">#FF6E40</color>
     <color name="blue_grey_700">#455A64</color>
+    <color name="item_caption">#6000</color>
 
 </resources>
